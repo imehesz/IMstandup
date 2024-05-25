@@ -1,0 +1,26 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  background-color: #000;
+  font-family: Arial, sans-serif;
+  color: #fff;
+  letter-spacing: 4px;
+  background-image: url(https://i.imgur.com/oNvlQsr.jpg), url(https://i.imgur.com/oNvlQsr.jpg);
+  background-repeat: repeat-y, no-repeat;
+  background-position: top, center;
+  background-attachment: fixed, fixed;
+  background-color: #000;
+  background-size: auto, cover;
+}
+
+footer {
+    text-align: center;
+    background-color: rgba(0,0,0,.75);
+    position: sticky;
+    bottom: 0;
+    font-size: 11px;
+    padding: 20px;
+}
