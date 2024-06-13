@@ -11,7 +11,7 @@ const YoutubeList = () => {
   useEffect(() => {
     const fetchYoutubeData = async () => {
       const config = await loadConfig();
-      const data = await fetchDataFromSheet(`${config.G_SHEET}/values/Sheet1!A1:D500?key=${config.API_KEY}`);
+      const data = await fetchDataFromSheet(`${config.G_SHEET}/values/CONFIG!A1:D500?key=${config.API_KEY}`);
       const ytVids = getPropFromDriveData(data, 'ytVids');
       setYtIds(ytVids.split(','));
     };
