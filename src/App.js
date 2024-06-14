@@ -7,6 +7,7 @@ import ReactMarkdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw';
 import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
 import loadConfig, { fetchDataFromSheet, getPropFromDriveData } from './utils/config'
+import { setMetaTags } from './utils/imxUtil';
 
 import './styles/global.css';
 
@@ -33,6 +34,23 @@ function App() {
     const [brand, setBrand] = useState({ label: "IMstandup.com", url: "/" })
     const [showHero, setShowHero] = useState(false)
 
+    const _defaultMetaTags = {
+        title: "GS-CMS v.1.0",
+        description: "This is a dynamically set meta description.",
+        keywords: "dynamic, SEO, meta tags, JavaScript",
+        author: "Sad Boi Works",
+        canonicalUrl: "https://IMstandup.com",
+        ogTitle: "GS-CMS v.1.0",
+        ogDescription: "This is a dynamically set meta description for social media.",
+        ogUrl: "https://IMstandup.com",
+        ogType: "website",
+        ogImage: "https://i.imgur.com/ZyTab4O.png",
+        twitterCard: "summary_large_image",
+        twitterTitle: "GS-CMS v.1.0",
+        twitterDescription: "This is a dynamically set meta description for Twitter.",
+        twitterImage: "https://i.imgur.com/ZyTab4O.png"
+    }
+
     useEffect(() => {
         const fetchConfig = async () => {
             const config = await loadConfig();
@@ -42,6 +60,22 @@ function App() {
             setBrand({label: getPropFromDriveData(data, 'brandLabel'), url: getPropFromDriveData(data, 'brandUrl')})
             setBackgrounds(bgUrls.split('\n'));
             setShowHero(getPropFromDriveData(data,'showHero') === 'Y')
+
+            setMetaTags(Object.assign({}, _defaultMetaTags, {
+                title: config.metaTitle ?? _defaultMetaTags.title,
+                description: config.metaDescription ?? _defaultMetaTags.description,
+                keywords: config.metaKeywords ?? _defaultMetaTags.keywords,
+                canonicalUrl: config.metaCanonicalUrl ?? _defaultMetaTags.canonicalUrl,
+                ogTitle: config.metaOgTitle ?? _defaultMetaTags.ogTitle,
+                ogDescription: config.metaOgDescription ?? _defaultMetaTags.ogDescription,
+                ogUrl: config.metaOgUrl ?? _defaultMetaTags.ogUrl,
+                ogType: config.metaOgType ?? _defaultMetaTags.ogType,
+                ogImage: config.metaOgImage ?? _defaultMetaTags.ogImage,
+                twitterCard: config.metaTwitterCard ?? _defaultMetaTags.twitterCard,
+                twitterTitle: config.metaTwitterTitle ?? _defaultMetaTags.twitterTitle,
+                twitterDescription: config.metaTwitterDescription ?? _defaultMetaTags.twitterDescription,
+                twitterImage: config.metaTwitterImage ?? _defaultMetaTags.twitterImage
+            }))
         };
 
         const fetchSections = async () => {
