@@ -2,7 +2,7 @@ import yaml from 'js-yaml';
 import axios from 'axios';
 
 const loadConfig = async () => {
-    const response = await fetch('/config.yml');
+    const response = await fetch('config.yml');
     const text = await response.text();
     const config = yaml.load(text);
     return config;
