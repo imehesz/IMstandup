@@ -1,0 +1,17 @@
+/**
+ *
+ * GS CMS v1.0.0
+ *
+ * Put custom CSS here, I hope you know what you're doing :)
+ *
+ */
+
+body { }
+
+.module .btn { }
+
+h2 { }
+
+.module h2::first-letter { }
+
+a { }

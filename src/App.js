@@ -52,6 +52,12 @@ function App() {
     }
 
     useEffect(() => {
+        // adding custom CSS
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = `css/custom.css`
+        document.head.appendChild(link)
+
         const fetchConfig = async () => {
             const config = await loadConfig();
             const data = await fetchDataFromSheet(`${config.G_SHEET}/values/CONFIG!A1:D500?key=${config.API_KEY}`);
