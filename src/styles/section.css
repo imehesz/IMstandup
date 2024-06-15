@@ -86,6 +86,10 @@
   list-style: none;
 }
 
+.module.content img {
+    width: 100%;
+}
+
 .module {
   background-color: rgba(0, 0, 0, 0.2);
 }
