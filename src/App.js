@@ -117,7 +117,9 @@ function App() {
         if(sections.length > 0) {
             setNavLinks(sections.map(s => {
                 if(s && s.showInNav) {
-                    return { label: s.sectionLabel, url: `#${s.sectionID}` }
+                    return s.sectionContent.startsWith('http') ? 
+                        { label: s.sectionLabel, url: s.sectionContent } :
+                        { label: s.sectionLabel, url: `#${s.sectionID}` }
                 }
             }).filter(s => s != undefined))
         }
@@ -131,7 +133,7 @@ function App() {
         { showHero && <PromoHeader /> }
 
         {sections.map((section) => (
-            <Section title={section.sectionLabel} id={section.sectionID} key={section.sectionID}>
+            <Section title={section.sectionLabel} id={section.sectionID} key={section.sectionID} hidden={section.sectionContent.startsWith('http')}>
                 <ReactMarkdown rehypePlugins={[rehypeRaw, [rehypeSanitize, schema]]}>{section.sectionContent}</ReactMarkdown>
             </Section>
         ))}
