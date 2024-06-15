@@ -55,7 +55,7 @@ function App() {
         // adding custom CSS
         const link = document.createElement('link')
         link.rel = 'stylesheet'
-        link.href = `css/custom.css`
+        link.href = `css/custom.css?v=${new Date().getTime()}`
         document.head.appendChild(link)
 
         const fetchConfig = async () => {
